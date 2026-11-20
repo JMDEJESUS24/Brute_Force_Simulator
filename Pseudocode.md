@@ -4,6 +4,7 @@ Set the assumed guessing speed to 500000 (for a typical laptop)
 Set the target password to empty
 
 #Main Menu
+Repeat until the user chooses Exit:
 Print "1. Set the password"
 Print "2. Estimate the longest run time"
 Print "3. Run the simulation"
