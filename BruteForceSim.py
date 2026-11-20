@@ -1,12 +1,16 @@
+# Author: JDJ
+# Cert IV - Programming for Cybersecurity
 # Brute-force password simulator (educational)
 # A simple program that tries every possible combination of characters
 # until it matches a target password. This is a demonstration only,
-# run against a password we already know.
+# and not for actual attacks
+# The program will be run against a password set by the user.
 #
-# Search method: brute-force (exhaustive) search. It has no shortcuts --
+# Search algorithm method: brute-force (exhaustive) search.
+# It has no shortcuts nor optimization techniques --
 # it simply tries length 1, then length 2, and so on, testing every
-# combination in order until it finds a match. Because it checks
-# everything, the time grows very fast as the password gets longer.
+# combination in order until it finds a match.
+# Because it checks everything, the time grows very fast as the password gets longer.
 
 import itertools
 import time
@@ -61,16 +65,23 @@ def crack(target):
             guess = "".join(combo)
             attempts = attempts + 1
 
+            # Show live progress every 100,000 attempts
+            if attempts % 100_000 == 0:
+                elapsed = time.perf_counter() - start
+                print("\rAttempts:", format(attempts, ","),
+                      "| Elapsed:", round(elapsed, 1), "seconds",
+                      end="", flush=True)
+
             if guess == target:
                 elapsed = time.perf_counter() - start
-                print("Password found:", guess)
+                print("\rPassword found:", guess)
                 print("Attempts:", format(attempts, ","))
                 print("Time taken:", round(elapsed, 4), "seconds")
                 return
 
 
 # ---- Simple menu ----
-target = "Sp@in"
+target = ""
 
 while True:
     print("===== Brute-Force Simulator =====")
