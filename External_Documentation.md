@@ -1,4 +1,4 @@
-# Brute-Force Password Simulator
+# External Documentation
 
 A simple Python program that demonstrates how a brute-force password attack
 works, by trying every possible combination of characters until it matches a
