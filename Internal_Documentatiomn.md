@@ -1,4 +1,4 @@
-# Internal Technical Documentation: Brute-Force Password Simulator
+# Internal Technical Documentation
 
 ## 1. Overview
 
