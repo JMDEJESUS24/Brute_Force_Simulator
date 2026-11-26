@@ -1,4 +1,4 @@
-# Pseudocode: Brute-Force Password Simulator
+# Pseudocode
 
 ## Setup
 
