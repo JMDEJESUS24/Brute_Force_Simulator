@@ -7,7 +7,7 @@
 # ============================================================
 
 import itertools   # used to generate every possible character combination
-import time        # used to measure how long the cracking take
+import time        # used to measure how long the cracking takes
 
 # ---- GLOBAL VARIABLES ----
 
@@ -25,7 +25,7 @@ def estimate_time(target):
     total = 0
     # Loop over every password length from 1 up to the target's length.
     for length in range(1, len(target) + 1):
-        # For each length there are (70 ^ length) combinations.
+        # For each length there are (72 ^ length) combinations.
         # Add them onto the running total.
         total = total + len(characters) ** length   # combinations of this length
 
@@ -89,32 +89,41 @@ def crack(target):
 # ============================================================
 #  MAIN MENU - this is what runs when the program starts.
 #  It ties the functions above together based on user choice.
+#  It is kept inside main() so the test file can import the
+#  functions above WITHOUT the menu starting.
 # ============================================================
 
-target = ""             # holds the password the user sets (empty to start)
+def main():
+    target = ""             # holds the password the user sets (empty to start)
 
-while True:             # repeat the menu forever until the user exits
-    print("===== Brute-Force Simulator =====")
-    print("1. Set the password")
-    print("2. Estimate the longest run time")
-    print("3. Run the simulation")
-    print("4. Exit")
+    while True:             # repeat the menu forever until the user exits
+        print("===== Brute-Force Simulator =====")
+        print("1. Set the password")
+        print("2. Estimate the longest run time")
+        print("3. Run the simulation")
+        print("4. Exit")
 
-    # choice: stores the menu number the user typed.
-    choice = input("Choose 1-4: ")
+        # choice: stores the menu number the user typed.
+        choice = input("Choose 1-4: ")
 
-    if choice == "1":
-        # Set/overwrite the target password.
-        target = input("Enter the password: ")
-    elif choice == "2":
-        estimate_time(target)           # CALL the estimate function
-    elif choice == "3":
-        estimate_time(target)           # show the estimate first...
-        go = input("This may take a while. Continue? (y/n): ")
-        if go == "y":                   # ...only crack if the user agrees
-            crack(target)               # CALL the cracking function
-    elif choice == "4":
-        break                           # leave the while loop -> program ends
-    else:
-        # Any input that is not 1-4 is caught here.
-        print("Please choose 1, 2, 3 or 4.\n")
+        if choice == "1":
+            # Set/overwrite the target password.
+            target = input("Enter the password: ")
+        elif choice == "2":
+            estimate_time(target)           # CALL the estimate function
+        elif choice == "3":
+            estimate_time(target)           # show the estimate first...
+            go = input("This may take a while. Continue? (y/n): ")
+            if go == "y":                   # ...only crack if the user agrees
+                crack(target)               # CALL the cracking function
+        elif choice == "4":
+            break                           # leave the while loop -> program ends
+        else:
+            # Any input that is not 1-4 is caught here.
+            print("Please choose 1, 2, 3 or 4.\n")
+
+
+# Only run the menu when the file is run directly, not when the test
+# file imports it.
+if __name__ == "__main__":
+    main()
